@@ -26,3 +26,5 @@ This repository is the inaugural produced-game showcase for the `2000m` benchmar
 ## Changelog
 
 - 2026-05-30 — Created produced-game mission for the inaugural Codex/GPT-5.5 2000m benchmark run.
+
+- 2026-05-30: closed 001-codex-gpt55-2000m-run — Codex GPT-5.5 reached 16/16 on generation 1; results review PR opened.

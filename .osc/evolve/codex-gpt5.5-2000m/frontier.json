@@ -1,0 +1,35 @@
+{
+  "schema": "open-scaffold.evolution-frontier.v1",
+  "loop_id": "20260530T212136Z-001-codex-gpt55-2000m-run-evolution",
+  "updated_at": "2026-05-30T21:34:56.183Z",
+  "current": {
+    "attempt_id": "20260530T213403Z-001-codex-gpt55-2000m-run-run",
+    "run_id": "20260530T213403Z-001-codex-gpt55-2000m-run-run",
+    "evaluation_id": "20260530T213442Z-20260530T213403Z-001-codex-gpt55-2000m-run-run-eval",
+    "score": 1,
+    "rationale": "Generation 1 is the frontier: independent neutral 2000m conformance scoring passed determinism and all 16/16 mechanical ACs, so further generations would only add leaderboard noise.",
+    "promoted_at": "2026-05-30T21:34:56.183Z",
+    "evidence_refs": [
+      ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run",
+      ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/run.json",
+      ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-a.md",
+      ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-b-c.md",
+      ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-d.md",
+      ".osc/runs/generation-01/evaluation.json",
+      ".osc/runs/generation-01/conformance.json",
+      ".osc/runs/generation-01/conformance.txt",
+      ".osc/runs/generation-01/codex-final.md"
+    ]
+  },
+  "history": [],
+  "boundary": {
+    "runtime_spawning": false,
+    "model_benchmarking": false,
+    "compliance_certification": false,
+    "approval_or_release_decision": false,
+    "external_anchoring": false
+  },
+  "notes": [
+    "Frontier promotion is a recorded decision, not proof of correctness or automatic approval."
+  ]
+}

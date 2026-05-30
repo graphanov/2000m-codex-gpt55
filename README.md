@@ -10,7 +10,7 @@ The architecture is intentionally split:
 
 ## Benchmark contract
 
-The game must implement `2000m.driver.v0` from the judge repo:
+The game implements `2000m.driver.v0` from the judge repo:
 
 - JSON-line stdin/stdout driver process.
 - Fixed-tick deterministic simulation.
@@ -18,8 +18,40 @@ The game must implement `2000m.driver.v0` from the judge repo:
 - No copyrighted SkiFree assets.
 - No scenario hints, shortcut config, or benchmark-specific flags.
 
-Mechanical rank comes only from the 16 acceptance criteria scored by the judge. the owner's human-feel verdict is a separate note and is never blended into the rank.
+Mechanical rank comes only from the 16 acceptance criteria scored by the judge. The owner's human-feel verdict is a separate note and is never blended into the rank.
 
 ## Current status
 
-This repository starts as an Open Scaffold work record. Codex/GPT-5.5 generations and score artifacts will land on the benchmark run branch before the owner's merge gate.
+Generation 1 includes a Rust headless driver and deterministic SkiFree-inspired simulation. Hermes independently ran the neutral conformance suite from `graphanov/2000m` and recorded:
+
+- Determinism: PASS.
+- Mechanical ACs: **16/16**.
+- Evidence: `.osc/runs/generation-01/conformance.json` and `.osc/runs/generation-01/conformance.txt`.
+
+The agreed cap was 8 generations, but the run stopped after generation 1 because the mechanical ceiling was already reached.
+
+## Running the driver
+
+```bash
+cargo build
+cargo test
+printf '%s\n' \
+  '{"cmd":"init","seed":42,"config":{}}' \
+  '{"cmd":"step","input":{"steer":1,"boost":false,"jump":false}}' \
+  '{"cmd":"state"}' \
+  '{"cmd":"reset","seed":42}' \
+  | cargo run --quiet --bin driver
+```
+
+The produced-game manifest is `2000m.json`; the scorer launches `cargo run --quiet --bin driver` from this repo root and exchanges JSON lines over stdin/stdout.
+
+## Scoring
+
+From a local checkout of the judge repo:
+
+```bash
+cd /path/to/2000m
+cargo run -q -p m2000-conformance -- /path/to/2000m-codex-gpt55 --json-out /tmp/codex-gpt55-2000m.json
+```
+
+Human-feel playtest remains pending and separate from the mechanical rank.

@@ -1,0 +1,108 @@
+{
+  "protocolVersion": "2000m.driver.v0",
+  "gameDir": "<local-produced-game-repo>",
+  "determinism": {
+    "pass": true,
+    "detail": "107 canonical GameState snapshots matched across two processes"
+  },
+  "passCount": 16,
+  "totalAcs": 16,
+  "acs": [
+    {
+      "id": "AC1",
+      "name": "skier entity with position state",
+      "pass": true,
+      "detail": "init returned skier x=0 y=0 speed=1 mode=skiing"
+    },
+    {
+      "id": "AC2",
+      "name": "steering moves skier.x deterministically",
+      "pass": true,
+      "detail": "right x 0→5, left x 0→-5"
+    },
+    {
+      "id": "AC3",
+      "name": "slope scrolls while skiing",
+      "pass": true,
+      "detail": "distance increased to 16.6 after 10 neutral steps"
+    },
+    {
+      "id": "AC4",
+      "name": "slope wraps horizontally",
+      "pass": true,
+      "detail": "observed right-edge wrap at step 61: x 60→-59"
+    },
+    {
+      "id": "AC5",
+      "name": "seeded obstacle field",
+      "pass": true,
+      "detail": "same seed matched; different seed differed; 60 snapshots had obstacles"
+    },
+    {
+      "id": "AC6",
+      "name": "tree/stump collision crashes and halts",
+      "pass": true,
+      "detail": "navigated into a tree/stump and crashed at tick 31 and distance halted at 90.52"
+    },
+    {
+      "id": "AC7",
+      "name": "crash recovery returns to skiing",
+      "pass": true,
+      "detail": "crashed at tick 31, recovered by tick 34"
+    },
+    {
+      "id": "AC8",
+      "name": "straight downhill acceleration to a cap",
+      "pass": true,
+      "detail": "speed rose from 1 to cap near 7"
+    },
+    {
+      "id": "AC9",
+      "name": "boost exceeds normal speed cap",
+      "pass": true,
+      "detail": "boosted max 10.5 exceeded normal max 7"
+    },
+    {
+      "id": "AC10",
+      "name": "ramp causes airborne then landing",
+      "pass": true,
+      "detail": "navigated onto a ramp, airborne at tick 40, landed by tick 45"
+    },
+    {
+      "id": "AC11",
+      "name": "style changes on landing and crash",
+      "pass": true,
+      "detail": "landing increased style above 0; crash deducted 0→-5"
+    },
+    {
+      "id": "AC12",
+      "name": "monster spawns at distance >= 2000m",
+      "pass": true,
+      "detail": "monster appeared at distance 2002 tick 307"
+    },
+    {
+      "id": "AC13",
+      "name": "monster pursues skier",
+      "pass": true,
+      "detail": "monster converged from distance 85.01973754958313 to 0"
+    },
+    {
+      "id": "AC14",
+      "name": "monster contact eats skier and ends game",
+      "pass": true,
+      "detail": "skier eaten and gameOver=true at tick 331"
+    },
+    {
+      "id": "AC15",
+      "name": "monster flees after eating",
+      "pass": true,
+      "detail": "fleeing monster moved away: distance 0→8"
+    },
+    {
+      "id": "AC16",
+      "name": "reset restores state and seed stream",
+      "pass": true,
+      "detail": "reset cleared state and matched fresh seeded stream over 30 snapshots"
+    }
+  ]
+}
