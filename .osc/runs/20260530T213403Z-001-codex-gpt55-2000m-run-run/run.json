@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "open-scaffold.run.v1",
+  "runId": "20260530T213403Z-001-codex-gpt55-2000m-run-run",
+  "taskId": null,
+  "mode": "run",
+  "status": "created",
+  "lifecycleStates": [
+    "created",
+    "packaged",
+    "dispatched",
+    "running",
+    "waiting_on_operator",
+    "completed",
+    "failed",
+    "blocked",
+    "cancelled",
+    "postflighted"
+  ],
+  "createdAt": "2026-05-30T21:34:03.306Z",
+  "updatedAt": "2026-05-30T21:34:03.306Z",
+  "namespace": ".osc",
+  "sourceRefs": [
+    "operator-thread:1510319677744873712"
+  ],
+  "plan": {
+    "slug": "001-codex-gpt55-2000m-run",
+    "path": ".osc/plans/active/001-codex-gpt55-2000m-run.md",
+    "goal": "Produce and score Codex/GPT-5.5's first 2000m benchmark trajectory across up to eight genuine Codex generations, then prepare reviewable game and results branches without merging them.",
+    "filesToTouch": [
+      "`Cargo.toml` — Rust workspace for the produced game.",
+      "`driver/` — JSON-line protocol driver binary implementing `2000m.driver.v0`.",
+      "`game/` or equivalent Rust modules — deterministic SkiFree-inspired simulation state and mechanics.",
+      "`.osc/evolve/codex-gpt5.5-2000m/` — evolve loop ledger for generation attempts.",
+      "`.osc/runs/generation-*/` — Codex prompts/logs and local scoring evidence.",
+      "`README.md` — public status and play/build instructions.",
+      "`MISSION.md` / `.osc/releases/*` — evidence notes and closeout material."
+    ],
+    "acceptanceCriteria": [
+      "A genuine Codex/GPT-5.5 run produces each attempted generation; prompts/logs are preserved.",
+      "Each generation is scored with `cargo run -p m2000-conformance -- <game-dir> --json-out <path>` from `graphanov/2000m`.",
+      "The trajectory records generation number, commit/hash or worktree state, pass count, determinism verdict, and score JSON path.",
+      "The final game branch builds locally or its failure is honestly recorded as the final state.",
+      "`graphanov/2000m-results` receives `models/codex-gpt5.5/trajectory.json`, `final-conformance.json`, `summary.md`, and regenerated `leaderboard.md` on a review branch.",
+      "Human-feel verdict remains a placeholder pending the owner's playtest and is not blended into the mechanical rank."
+    ],
+    "verificationSteps": [
+      "`cargo build` from this repo after each generation that creates Rust code.",
+      "`cargo run -q -p m2000-conformance -- <this-repo-or-driver-dir> --json-out .osc/runs/generation-N/conformance.json` from `<local-2000m-judge-repo>` for every generation.",
+      "`npx --yes open-scaffold@latest evolve check .osc/evolve/codex-gpt5.5-2000m` from this repo after recording attempts.",
+      "`python3 scripts/validate_results.py && python3 scripts/build_leaderboard.py --check` from `<local-2000m-results-repo>` after adding the results folder.",
+      "GitHub PR/check links show review branches are pushed; no merge is performed without owner approval."
+    ],
+    "openQuestions": [
+      "The owner will provide the separate human-feel verdict after a playable WASM/browser build exists.",
+      "If Codex reaches 16/16 before generation 8, stop early only after recording the full winning evidence and explaining why additional generations would be leaderboard noise."
+    ]
+  },
+  "packageQuality": {
+    "executable": true,
+    "blockers": [],
+    "requiredAction": null
+  },
+  "runtimeSelection": {
+    "runtime": "codex",
+    "workflow": "execute",
+    "profileId": "codex",
+    "profileSource": "builtin",
+    "note": "Runtime selection records the intended adapter lane. Open Scaffold core still does not spawn the runtime."
+  },
+  "executor": {
+    "lane": "omx-codex",
+    "harnessSkill": "$ultrawork",
+    "spawning": false,
+    "note": "Generic open-scaffold creates prompt/artifact bundles only. Coordinators or runtime adapters perform autonomous spawning."
+  },
+  "runtime": {
+    "repoPath": "<local-produced-game-repo>",
+    "worktreePath": "<local-produced-game-repo>",
+    "branch": "benchmark/codex-gpt55-run",
+    "tmuxSession": null,
+    "processId": null
+  },
+  "bindings": {
+    "operatorSurface": "discord",
+    "operatorThreadId": "1510319677744873712",
+    "githubIssue": null,
+    "githubPr": null
+  },
+  "artifacts": {
+    "runDir": ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run",
+    "manifest": ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/run.json",
+    "prompts": [
+      ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-a.md",
+      ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-b-c.md",
+      ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-d.md"
+    ],
+    "logs": [],
+    "outputs": [],
+    "evidence": []
+  },
+  "questions": [],
+  "commitPolicy": "Codex may modify the branch worktree only; Hermes owns commit/push and the owner owns merge.",
+  "note": "Canonical lifecycle belongs to the task/run record. Chat threads mirror/control via bindings; they are not canonical task identity."
+}

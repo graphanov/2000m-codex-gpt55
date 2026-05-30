@@ -1,0 +1,348 @@
+{
+  "schema": "open-scaffold.evaluation.v1",
+  "evaluation_id": "20260530T213442Z-20260530T213403Z-001-codex-gpt55-2000m-run-run-eval",
+  "idempotency_key": "eval:run:20260530T213403Z-001-codex-gpt55-2000m-run-run:61ebca7d23ae5aea",
+  "created_at": "2026-05-30T21:34:42.108Z",
+  "evaluated_at": "2026-05-30T21:40:00Z",
+  "subject": {
+    "source": "run",
+    "plan": ".osc/plans/active/001-codex-gpt55-2000m-run.md",
+    "plan_slug": "001-codex-gpt55-2000m-run",
+    "task_id": null,
+    "run_id": "20260530T213403Z-001-codex-gpt55-2000m-run-run",
+    "run_packet": ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/run.json"
+  },
+  "correlation": {
+    "task_id": null,
+    "run_id": "20260530T213403Z-001-codex-gpt55-2000m-run-run",
+    "evidence_receipt_ids": [],
+    "feedback_ids": []
+  },
+  "inputs": {
+    "run_packet": ".osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/run.json",
+    "evidence": [],
+    "feedback": []
+  },
+  "acceptance_criteria": [
+    {
+      "id": "AC1",
+      "id_source": "fallback",
+      "source_index": 1,
+      "text": "A genuine Codex/GPT-5.5 run produces each attempted generation; prompts/logs are preserved.",
+      "status": "pass",
+      "evaluator": {
+        "kind": "human",
+        "name": "Hermes postflight",
+        "ref": null
+      },
+      "evidence": [
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/codex-final.md",
+          "summary": "Codex/GPT-5.5 final response for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.json",
+          "summary": "Neutral 2000m machine scorer output for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.txt",
+          "summary": "Human-readable 2000m conformance output."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/evolve/codex-gpt5.5-2000m/attempts.jsonl",
+          "summary": "Open Scaffold evolve attempt record."
+        }
+      ],
+      "rationale": "Codex CLI ran with model gpt-5.5/xhigh and left generation evidence under .osc/runs/generation-01/.",
+      "confidence": "high",
+      "gaps": [],
+      "feedback_refs": [],
+      "correction": {
+        "route": "close",
+        "target": null,
+        "rationale": "Criterion passed; no correction needed."
+      }
+    },
+    {
+      "id": "AC2",
+      "id_source": "fallback",
+      "source_index": 2,
+      "text": "Each generation is scored with `cargo run -p m2000-conformance -- <game-dir> --json-out <path>` from `graphanov/2000m`.",
+      "status": "pass",
+      "evaluator": {
+        "kind": "human",
+        "name": "Hermes postflight",
+        "ref": null
+      },
+      "evidence": [
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/codex-final.md",
+          "summary": "Codex/GPT-5.5 final response for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.json",
+          "summary": "Neutral 2000m machine scorer output for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.txt",
+          "summary": "Human-readable 2000m conformance output."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/evolve/codex-gpt5.5-2000m/attempts.jsonl",
+          "summary": "Open Scaffold evolve attempt record."
+        }
+      ],
+      "rationale": "Hermes independently ran the neutral m2000-conformance scorer from <local-2000m-judge-repo> and captured JSON/text evidence.",
+      "confidence": "high",
+      "gaps": [],
+      "feedback_refs": [],
+      "correction": {
+        "route": "close",
+        "target": null,
+        "rationale": "Criterion passed; no correction needed."
+      }
+    },
+    {
+      "id": "AC3",
+      "id_source": "fallback",
+      "source_index": 3,
+      "text": "The trajectory records generation number, commit/hash or worktree state, pass count, determinism verdict, and score JSON path.",
+      "status": "pass",
+      "evaluator": {
+        "kind": "human",
+        "name": "Hermes postflight",
+        "ref": null
+      },
+      "evidence": [
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/codex-final.md",
+          "summary": "Codex/GPT-5.5 final response for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.json",
+          "summary": "Neutral 2000m machine scorer output for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.txt",
+          "summary": "Human-readable 2000m conformance output."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/evolve/codex-gpt5.5-2000m/attempts.jsonl",
+          "summary": "Open Scaffold evolve attempt record."
+        }
+      ],
+      "rationale": "trajectory.json in the results branch records generation=1, passCount=16, determinism=true, passed AC ids, and evidence link.",
+      "confidence": "high",
+      "gaps": [],
+      "feedback_refs": [],
+      "correction": {
+        "route": "close",
+        "target": null,
+        "rationale": "Criterion passed; no correction needed."
+      }
+    },
+    {
+      "id": "AC4",
+      "id_source": "fallback",
+      "source_index": 4,
+      "text": "The final game branch builds locally or its failure is honestly recorded as the final state.",
+      "status": "pass",
+      "evaluator": {
+        "kind": "human",
+        "name": "Hermes postflight",
+        "ref": null
+      },
+      "evidence": [
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/codex-final.md",
+          "summary": "Codex/GPT-5.5 final response for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.json",
+          "summary": "Neutral 2000m machine scorer output for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.txt",
+          "summary": "Human-readable 2000m conformance output."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/evolve/codex-gpt5.5-2000m/attempts.jsonl",
+          "summary": "Open Scaffold evolve attempt record."
+        }
+      ],
+      "rationale": "cargo build --locked and cargo test --locked passed locally; the final branch contains a buildable Rust driver.",
+      "confidence": "high",
+      "gaps": [],
+      "feedback_refs": [],
+      "correction": {
+        "route": "close",
+        "target": null,
+        "rationale": "Criterion passed; no correction needed."
+      }
+    },
+    {
+      "id": "AC5",
+      "id_source": "fallback",
+      "source_index": 5,
+      "text": "`graphanov/2000m-results` receives `models/codex-gpt5.5/trajectory.json`, `final-conformance.json`, `summary.md`, and regenerated `leaderboard.md` on a review branch.",
+      "status": "pass",
+      "evaluator": {
+        "kind": "human",
+        "name": "Hermes postflight",
+        "ref": null
+      },
+      "evidence": [
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/codex-final.md",
+          "summary": "Codex/GPT-5.5 final response for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.json",
+          "summary": "Neutral 2000m machine scorer output for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.txt",
+          "summary": "Human-readable 2000m conformance output."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/evolve/codex-gpt5.5-2000m/attempts.jsonl",
+          "summary": "Open Scaffold evolve attempt record."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/releases/2026-05-30-001-codex-gpt55-2000m-run.md",
+          "summary": "Evidence note records the results PR URL and validation commands."
+        }
+      ],
+      "rationale": "graphanov/2000m-results PR #1 contains models/codex-gpt5.5/{trajectory.json,final-conformance.json,summary.md} and regenerated leaderboard.md.",
+      "confidence": "high",
+      "gaps": [],
+      "feedback_refs": [],
+      "correction": {
+        "route": "close",
+        "target": null,
+        "rationale": "Criterion passed; no correction needed."
+      }
+    },
+    {
+      "id": "AC6",
+      "id_source": "fallback",
+      "source_index": 6,
+      "text": "Human-feel verdict remains a placeholder pending the owner's playtest and is not blended into the mechanical rank.",
+      "status": "pass",
+      "evaluator": {
+        "kind": "human",
+        "name": "Hermes postflight",
+        "ref": null
+      },
+      "evidence": [
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/codex-final.md",
+          "summary": "Codex/GPT-5.5 final response for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.json",
+          "summary": "Neutral 2000m machine scorer output for generation 1."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/runs/generation-01/conformance.txt",
+          "summary": "Human-readable 2000m conformance output."
+        },
+        {
+          "kind": "path",
+          "ref": ".osc/evolve/codex-gpt5.5-2000m/attempts.jsonl",
+          "summary": "Open Scaffold evolve attempt record."
+        }
+      ],
+      "rationale": "summary.md in the results folder leaves human-feel pending and explicitly separates it from the mechanical rank.",
+      "confidence": "high",
+      "gaps": [],
+      "feedback_refs": [],
+      "correction": {
+        "route": "close",
+        "target": null,
+        "rationale": "Criterion passed; no correction needed."
+      }
+    }
+  ],
+  "verification": [
+    {
+      "command": "cargo fmt --check",
+      "status": "pass",
+      "summary": "Produced-game formatting passed."
+    },
+    {
+      "command": "cargo build --locked",
+      "status": "pass",
+      "summary": "Produced-game build passed."
+    },
+    {
+      "command": "cargo test --locked",
+      "status": "pass",
+      "summary": "Produced-game tests passed (3 tests)."
+    },
+    {
+      "command": "cargo run -q -p m2000-conformance -- <local-produced-game-repo> --json-out .osc/runs/generation-01/conformance.json",
+      "status": "pass",
+      "summary": "Neutral judge reported determinism PASS and 16/16 ACs."
+    },
+    {
+      "command": "npx --yes open-scaffold@latest evolve check .osc/evolve/codex-gpt5.5-2000m",
+      "status": "pass",
+      "summary": "Evolve loop structure valid."
+    },
+    {
+      "command": "python3 scripts/validate_results.py && python3 scripts/build_leaderboard.py --check",
+      "status": "pass",
+      "summary": "Results repo branch validates and leaderboard is fresh."
+    }
+  ],
+  "decision": {
+    "status": "approved",
+    "approver": "Hermes postflight",
+    "rationale": "All mechanical/run-record acceptance criteria passed locally; owner merge and human-feel gates remain separate."
+  },
+  "improvement": {
+    "route": "close",
+    "target": ".osc/plans/done/001-codex-gpt55-2000m-run.md",
+    "carried_forward": [
+      "Owner human-feel playtest after merge/playable build review."
+    ],
+    "do_not_assume": [
+      "No merge approval.",
+      "No general LLM benchmark claim.",
+      "Human-feel track is separate from mechanical rank."
+    ]
+  },
+  "notes": [
+    "This envelope records acceptance-criteria-to-evidence coverage and routing. It does not certify correctness, compliance, production readiness, or model quality."
+  ],
+  "scorer": {
+    "kind": "human",
+    "name": "Hermes postflight",
+    "notes": "Hermes supervised and independently verified the Codex generation against the neutral 2000m mechanical scorer; this is evidence, not automatic owner approval."
+  }
+}

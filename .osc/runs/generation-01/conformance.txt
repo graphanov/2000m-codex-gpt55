@@ -1,0 +1,20 @@
+2000m conformance: <local-produced-game-repo>
+Determinism: PASS — 107 canonical GameState snapshots matched across two processes
+Mechanical ACs: 16/16 passed
+  PASS AC1  — skier entity with position state: init returned skier x=0 y=0 speed=1 mode=skiing
+  PASS AC2  — steering moves skier.x deterministically: right x 0→5, left x 0→-5
+  PASS AC3  — slope scrolls while skiing: distance increased to 16.6 after 10 neutral steps
+  PASS AC4  — slope wraps horizontally: observed right-edge wrap at step 61: x 60→-59
+  PASS AC5  — seeded obstacle field: same seed matched; different seed differed; 60 snapshots had obstacles
+  PASS AC6  — tree/stump collision crashes and halts: navigated into a tree/stump and crashed at tick 31 and distance halted at 90.52
+  PASS AC7  — crash recovery returns to skiing: crashed at tick 31, recovered by tick 34
+  PASS AC8  — straight downhill acceleration to a cap: speed rose from 1 to cap near 7
+  PASS AC9  — boost exceeds normal speed cap: boosted max 10.5 exceeded normal max 7
+  PASS AC10 — ramp causes airborne then landing: navigated onto a ramp, airborne at tick 40, landed by tick 45
+  PASS AC11 — style changes on landing and crash: landing increased style above 0; crash deducted 0→-5
+  PASS AC12 — monster spawns at distance >= 2000m: monster appeared at distance 2002 tick 307
+  PASS AC13 — monster pursues skier: monster converged from distance 85.01973754958313 to 0
+  PASS AC14 — monster contact eats skier and ends game: skier eaten and gameOver=true at tick 331
+  PASS AC15 — monster flees after eating: fleeing monster moved away: distance 0→8
+  PASS AC16 — reset restores state and seed stream: reset cleared state and matched fresh seeded stream over 30 snapshots
+Machine JSON written to .osc/runs/generation-01/conformance.json

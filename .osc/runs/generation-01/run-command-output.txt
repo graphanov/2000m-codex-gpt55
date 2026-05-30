@@ -1,0 +1,7 @@
+Created run artifacts:
+  Run: <local-produced-game-repo>/.osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run
+  Manifest: <local-produced-game-repo>/.osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/run.json
+  Prompt: <local-produced-game-repo>/.osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-a.md
+  Prompt: <local-produced-game-repo>/.osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-b-c.md
+  Prompt: <local-produced-game-repo>/.osc/runs/20260530T213403Z-001-codex-gpt55-2000m-run-run/prompts/group-d.md
+  Note: generic open-scaffold did not spawn a runtime; dispatch via your coordinator or harness adapter.

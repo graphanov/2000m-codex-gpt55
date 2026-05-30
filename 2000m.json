@@ -1,0 +1,8 @@
+{
+  "protocolVersion": "2000m.driver.v0",
+  "driver": {
+    "command": "cargo",
+    "args": ["run", "--quiet", "--bin", "driver"]
+  },
+  "language": "rust"
+}
